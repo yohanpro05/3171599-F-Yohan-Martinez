@@ -1,0 +1,18 @@
+# ============================================
+# PYPROJECT.TOML - Proyecto API de Saludo
+# ============================================
+
+[project]
+name = "greeting-api"
+version = "1.0.0"
+description = "API de Saludo - Proyecto Semana 01"
+requires-python = ">=3.11"
+
+dependencies = [
+    "fastapi >= 0.115.0",
+    "uvicorn >= 0.30.0",
+]
+
+# === IMPORTANTE: Esta sección le dice a hatchling dónde está tu código ===
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
