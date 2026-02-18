@@ -1,0 +1,10 @@
+{
+  "python.defaultInterpreterPath": ".venv/bin/python",   // si tienes venv local
+  // O si usas Docker sin Dev Containers:
+  "python.analysis.extraPaths": [
+    "./tu-proyecto",           // si tienes paquetes locales
+    "/app"                     // ruta típica dentro del contenedor (ajusta)
+  ],
+  "python.linting.pylintEnabled": false,   // opcional
+  "python.analysis.typeCheckingMode": "basic"   // o "off" si quieres quitar muchas advertencias
+}
