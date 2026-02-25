@@ -1,0 +1,23 @@
+FROM python:3.14-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    UV_SYSTEM_PYTHON=1 \
+    UV_NO_CACHE=1
+
+RUN pip install --no-cache-dir uv
+
+WORKDIR /app
+
+# Copia dependencias primero (para cache)
+COPY pyproject.toml uv.lock* ./
+
+# Instala (frozen = usa lock exacto, más reproducible)
+RUN uv sync --no-dev --frozen
+
+# Copia código fuente
+COPY . .
+
+EXPOSE 8000
+
+CMD ["uv", "run", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
